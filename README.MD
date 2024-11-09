@@ -3,7 +3,7 @@
 It is all about helper to convert easily from one type to another.
 
 
-## Content of Tables
+## Orientation
 
 | Namespace | Description |
 | ----------- | ----------- |
