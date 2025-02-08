@@ -1,13 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-	  <LangVersion>12</LangVersion>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<LangVersion>12</LangVersion>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<Description>Convert anything you want with helpful attributes and extensions</Description>
+		<Version>0.0.10</Version>
+		<Authors>Tom-Oliver Marek</Authors>
+		<GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>
+		<IsPackable>true</IsPackable>
+		<PackageId>Convertification</PackageId>
+		<PackageOutputPath>C:\Users\tom-o\source\nugets</PackageOutputPath>
+		<PackageTags>Convert Attributes Extensions</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/TomTurtles/convertification</RepositoryUrl>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="System.Text.Json" Version="8.0.5" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="System.Text.Json" Version="8.0.5" />
+	</ItemGroup>
 
 </Project>
