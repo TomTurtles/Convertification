@@ -16,7 +16,7 @@ public class StringBooleanConverter : JsonConverter<bool>
         {
             return reader.TokenType switch
             {
-                JsonTokenType.String => reader.GetBoolean(),
+                JsonTokenType.String => reader.GetString().ToBoolean(),
                 JsonTokenType.False => false,
                 JsonTokenType.True => true,
                 JsonTokenType.Number => reader.GetDouble() != 0,
