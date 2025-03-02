@@ -2,44 +2,27 @@
 
 public class ConvertStringDoubleArrayAttribute : JsonConverterAttribute
 {
-    private readonly string _delimiter;
-
-    public ConvertStringDoubleArrayAttribute(string delimiter = ";") : base(typeof(StringDoubleArrayConverter))
+    public ConvertStringDoubleArrayAttribute() : base(typeof(StringDoubleArrayConverter))
     {
-        _delimiter = delimiter;
-    }
-
-    public override JsonConverter CreateConverter(Type typeToConvert)
-    {
-        if (typeToConvert != typeof(double[]))
-        {
-            throw new InvalidOperationException($"ConvertStringDoubleArrayAttribute kann nur auf double[] angewendet werden, nicht auf {typeToConvert}.");
-        }
-
-        return new StringDoubleArrayConverter(_delimiter);
     }
 }
 
 public class StringDoubleArrayConverter : JsonConverter<double[]>
 {
-    private readonly string _delimiter;
-
-    public StringDoubleArrayConverter(string delimiter)
-    {
-        _delimiter = delimiter;
-    }
+    private readonly string _delimiter = ",";
 
     public override double[] Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         try
         {
+
             return reader.TokenType switch
             {
                 JsonTokenType.String => [
                     .. reader
                         .GetString()!
-                        .Split(_delimiter, StringSplitOptions.RemoveEmptyEntries)
-                        .Select(s => s.ToDouble())
+                        .Split(_delimiter)
+                        .Select(s => s.ToDouble(double.NaN))
                 ],
                 JsonTokenType.Number => [reader.GetDouble()],
                 _ => throw new InvalidOperationException($"Unexpected JsonTokenType: {reader.TokenType}"),

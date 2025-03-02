@@ -16,7 +16,7 @@ public class StringDoubleConverter : JsonConverter<double>
         {
             return reader.TokenType switch
             {
-                JsonTokenType.String => reader.GetString()!.ToDouble(),
+                JsonTokenType.String => reader.GetString()!.ToDouble(double.NaN),
                 JsonTokenType.Number => reader.GetDouble(),
                 _ => throw new InvalidOperationException($"Unexpected JsonTokenType: {reader.TokenType}"),
             };
